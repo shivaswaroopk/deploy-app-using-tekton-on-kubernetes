@@ -32,8 +32,8 @@ spec:
     - name: build-and-push
       image: gcr.io/kaniko-project/executor@sha256:6ecc43ae139ad8cfa11604b592aaedddcabff8cef469eda303f1fb5afe5e3034
       command:
-        - /kaniko/executor
-      args:
-        - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
-        - '--dockerfile=$(inputs.params.pathToDockerfile)'
-        - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
+        - /kaniko/executor --context "https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git" --dockerfile "/src/Dockerfile" --destination '$(inputs.params.imageUrl):$(inputs.params.imageTag)'
+#       args:
+#         - '-'
+#         - '--dockerfile=$(inputs.params.pathToDockerfile)'
+#         - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
