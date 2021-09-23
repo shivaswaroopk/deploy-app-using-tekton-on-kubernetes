@@ -27,7 +27,7 @@ spec:
         image: golang # contains python
         script: |
           #!/usr/bin/env bash
-          git clone https://github.com/sandeep782/deploy-app-using-tekton-on-k8s.git
+          git clone https://sandeep782:$(token)@github.com/sandeep782/deploy-app-using-tekton-on-k8s.git
          
           
 #         image: ubuntu
