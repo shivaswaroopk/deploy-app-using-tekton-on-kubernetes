@@ -37,4 +37,5 @@ spec:
         - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
         - '--dockerfile=$(inputs.params.pathToDockerfile)'
         - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
+        - "--verbosity=trace"
        
