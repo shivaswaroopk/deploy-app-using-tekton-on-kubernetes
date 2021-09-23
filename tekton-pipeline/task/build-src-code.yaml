@@ -23,12 +23,12 @@ spec:
       description: Tag to apply to the built image
       default: latest
   steps:
-    - name: list-src
-      image: 'alpine:3.14'
-      command:
-        - ls
-      args:
-        - $(inputs.resources.url)
+#     - name: list-src
+#       image: 'alpine:3.14'
+#       command:
+#         - ls
+#       args:
+#         - $(inputs.resources.url)
     - name: build-and-push
       image: gcr.io/kaniko-project/executor@sha256:6ecc43ae139ad8cfa11604b592aaedddcabff8cef469eda303f1fb5afe5e3034
       command:
