@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: git
+  name: git-source
 spec:
   type: git
   params:
     - name: revision
-      value: master
+      value: br-latest-tekton
     - name: url
-      value: https://github.com/IBM/deploy-app-using-tekton-on-kubernetes
+      value: https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git
