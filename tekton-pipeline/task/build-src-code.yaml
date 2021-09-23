@@ -24,9 +24,9 @@ spec:
         value: latest
   steps:
       - name: hello
-        image: 'python:latest'
-        command:
-          - print "Hello"
+        image: ubuntu
+        command: ["echo"]
+        args: ["Hello"] 
 #     - name: list-src
 #       image: 'alpine:3.14'
 #       command:
