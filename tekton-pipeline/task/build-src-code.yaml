@@ -15,7 +15,7 @@ spec:
       default: src
     - name: pathToDockerfile
       description: The path to the dockerfile to build
-      default: /src/Dockerfile
+      default: "/src/Dockerfile"
     - name: imageUrl
       description: value should be like - us.icr.io/test_namespace/builtImageApp
       default: de.icr.io/cloud-space/app1
