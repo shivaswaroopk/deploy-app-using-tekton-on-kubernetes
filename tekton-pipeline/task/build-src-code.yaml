@@ -23,19 +23,23 @@ spec:
         description: Tag to apply to the built image
         value: latest
   steps:
+      - name: hello
+        image: 'alpine:3.14'
+        command:
+          - echo "Hello"
 #     - name: list-src
 #       image: 'alpine:3.14'
 #       command:
 #         - ls
 #       args:
 #         - $(inputs.resources.url)
-    - name: build-and-push
-      image: gcr.io/kaniko-project/executor:latest
-      command:
-        - /kaniko/executor
-      args:
-        - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
-        - '--dockerfile=$(inputs.params.pathToDockerfile)'
-        - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
-        - "--verbosity=trace"
+#     - name: build-and-push
+#       image: gcr.io/kaniko-project/executor:latest
+#       command:
+#         - /kaniko/executor
+#       args:
+#         - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
+#         - '--dockerfile=$(inputs.params.pathToDockerfile)'
+#         - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
+#         - "--verbosity=trace"
        
