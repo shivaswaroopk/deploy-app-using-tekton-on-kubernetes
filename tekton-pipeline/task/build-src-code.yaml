@@ -24,9 +24,13 @@ spec:
         value: latest
   steps:
       - name: hello
-        image: ubuntu
-        command: ["echo"]
-        args: ["Hello"] 
+        image: python # contains python
+        script: |
+          #!/usr/bin/env python3
+          print("Hello from Python!")
+#         image: ubuntu
+#         command: ["echo"]
+#         args: ["Hello"] 
 #     - name: list-src
 #       image: 'alpine:3.14'
 #       command:
