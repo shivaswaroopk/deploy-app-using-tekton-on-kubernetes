@@ -27,7 +27,7 @@ spec:
         image: golang # contains python
         script: |
           #!/usr/bin/env bash
-          cat > "Hello" hello.txt
+          cat "Hello" > hello.txt
           
 #         image: ubuntu
 #         command: ["echo"]
