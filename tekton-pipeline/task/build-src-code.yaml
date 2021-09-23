@@ -7,6 +7,8 @@ spec:
     resources:
       - name: git-source
         type: git
+      - name: url
+        value: https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git
   params:
     - name: pathToContext
       description: 'The path to the build context, used by Kaniko - within the workspace'
@@ -26,7 +28,7 @@ spec:
       command:
         - ls
       args:
-        - $(inputs.resources.git-source.url)
+        - $(inputs.resources.url)
     - name: build-and-push
       image: gcr.io/kaniko-project/executor@sha256:6ecc43ae139ad8cfa11604b592aaedddcabff8cef469eda303f1fb5afe5e3034
       command:
@@ -34,4 +36,4 @@ spec:
       args:
         - '--dockerfile=$(inputs.params.pathToDockerfile)'
         - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
-        - '--context=$(inputs.resources.git-source.url)/$(inputs.params.pathToContext)/'
+        - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
