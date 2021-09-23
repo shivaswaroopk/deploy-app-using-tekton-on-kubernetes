@@ -3,11 +3,17 @@ kind: Pipeline
 metadata:
   name: application-pipeline
 spec:
+  params:
+    - name: token
+      description: git token
   resources:
     - name: git-source
       type: git
   tasks:
     - name: build-image-from-source
+      params:
+        - name: token
+          value: $(params.token)
       taskRef:
         name: build-image-from-source
     - name: deploy-application
