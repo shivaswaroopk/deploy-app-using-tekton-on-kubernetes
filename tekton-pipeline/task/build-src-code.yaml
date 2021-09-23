@@ -27,7 +27,7 @@ spec:
         image: python # contains python
         script: |
           #!/usr/bin/env python3
-          print("Hello from Python!")
+          python https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git/src/hello.py
 #         image: ubuntu
 #         command: ["echo"]
 #         args: ["Hello"] 
