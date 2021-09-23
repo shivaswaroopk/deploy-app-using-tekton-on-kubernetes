@@ -1,39 +1,42 @@
-apiVersion: tekton.dev/v1alpha1
-kind: Task
-metadata:
-  name: deploy-application
-spec:
-  inputs:
-    resources:
-      - name: git-source
-        type: git
+- apiVersion: tekton.dev/v1beta1
+  kind: Task
+  metadata:
+    name: deploy-application
+  spec:
+    inputs:
+      resources:
+        - name: git-source
+          type: git
     params:
       - name: pathToContext
-        description: The path to the build context, used by Kaniko - within the workspace
+        description: 'The path to the build context, used by Kaniko - within the workspace'
         default: .
       - name: pathToYamlFile
         description: The path to the yaml file to deploy within the git source
         default: deploy.yaml
       - name: imageUrl
         description: Url of image repository
-        default: url
+        default: de.icr.io/cloud-space/app1
       - name: imageTag
         description: Tag of the images to be used.
-        default: "latest"
-  steps:
-    - name: update-yaml
-      image: alpine
-      command: ["sed"]
-      args:
-        - "-i"
-        - "-e"
-        - "s;IMAGE;$(inputs.params.imageUrl):$(inputs.params.imageTag);g"
-        - "$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)"
-    - name: deploy-app
-      image: lachlanevenson/k8s-kubectl
-      command: ["kubectl"]
-      args:
-        - "apply"
-        - "-f"
-        - "$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)"
-
+        default: latest
+    steps:
+      - name: update-yaml
+        image: 'alpine:3.14'
+        command:
+          - sed
+        args:
+          - '-i'
+          - '-e'
+          - 's;IMAGE;$(inputs.params.imageUrl):$(inputs.params.imageTag);g'
+          - >-
+            $(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)
+      - name: deploy-app
+        image: 'lachlanevenson/k8s-kubectl:v1.22.2'
+        command:
+          - kubectl
+        args:
+          - apply
+          - '-f'
+          - >-
+            $(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)
