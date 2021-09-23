@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: build-image-from-source
@@ -7,29 +7,31 @@ spec:
     resources:
       - name: git-source
         type: git
-    params:
-      - name: pathToContext
-        description: The path to the build context, used by Kaniko - within the workspace
-        default: .
-      - name: pathToDockerfile
-        description: The path to the dockerfile to build
-        default: Dockerfile
-      - name: imageUrl
-        description: value should be like - us.icr.io/test_namespace/builtImageApp
-      - name: imageTag
-        description: Tag to apply to the built image
+  params:
+    - name: pathToContext
+      description: 'The path to the build context, used by Kaniko - within the workspace'
+      default: .
+    - name: pathToDockerfile
+      description: The path to the dockerfile to build
+      default: Dockerfile
+    - name: imageUrl
+      description: value should be like - us.icr.io/test_namespace/builtImageApp
+      default: de.icr.io/cloud-space/app1
+    - name: imageTag
+      description: Tag to apply to the built image
+      default: latest
   steps:
     - name: list-src
-      image: alpine
+      image: 'alpine:3.14'
       command:
-        - "ls"
+        - ls
       args:
-        - "$(inputs.resources.git-source.path)"
+        - $(inputs.resources.git-source.url)
     - name: build-and-push
-      image: gcr.io/kaniko-project/executor
+      image: gcr.io/kaniko-project/executor@sha256:6ecc43ae139ad8cfa11604b592aaedddcabff8cef469eda303f1fb5afe5e3034
       command:
         - /kaniko/executor
       args:
-        - "--dockerfile=$(inputs.params.pathToDockerfile)"
-        - "--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)"
-        - "--context=$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/"
+        - '--dockerfile=$(inputs.params.pathToDockerfile)'
+        - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
+        - '--context=$(inputs.resources.git-source.url)/$(inputs.params.pathToContext)/'
