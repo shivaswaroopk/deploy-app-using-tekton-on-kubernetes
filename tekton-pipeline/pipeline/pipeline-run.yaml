@@ -3,6 +3,9 @@ kind: TriggerTemplate
 metadata:
   name: pipeline-template
 spec:
+  params:
+    - name: token
+      description: git token
   resourcetemplates:
     - apiVersion: tekton.dev/v1alpha1
       kind: PipelineRun
@@ -15,3 +18,6 @@ spec:
           - name: git-source
             resourceRef:
               name: git-source
+        params:
+          - name: token
+            value: $(params.token)
