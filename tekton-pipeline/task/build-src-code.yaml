@@ -34,6 +34,7 @@ spec:
       command:
         - /kaniko/executor
       args:
+        - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
         - '--dockerfile=$(inputs.params.pathToDockerfile)'
         - '--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)'
-        - '--context=$(inputs.resources.url)/$(inputs.params.pathToContext)/'
+       
