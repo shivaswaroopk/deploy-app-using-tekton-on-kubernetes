@@ -1,13 +1,13 @@
-- apiVersion: tekton.dev/v1alpha1
-  kind: EventListener
-  metadata:
-    name: listener-interceptor
-  spec:
-    serviceType: LoadBalancer
-    triggers:
-      - name: pr-trig
-        interceptor: null
-        bindings:
-          - name: review-pipeline-binding
-        template:
-          name: pipeline-template
+apiVersion: tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: listener-interceptor
+spec:
+  serviceType: LoadBalancer
+  triggers:
+    - name: pr-trig
+      interceptor: null
+      bindings:
+        - name: review-pipeline-binding
+      template:
+        name: pipeline-template
