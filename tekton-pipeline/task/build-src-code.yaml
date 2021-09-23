@@ -27,7 +27,7 @@ spec:
         image: python # contains python
         script: |
           #!/usr/bin/env python3
-          git clone "https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git"
+          git clone "https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git /src"
 #         image: ubuntu
 #         command: ["echo"]
 #         args: ["Hello"] 
