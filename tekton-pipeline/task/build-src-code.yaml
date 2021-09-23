@@ -26,7 +26,7 @@ spec:
       - name: hello
         image: golang # contains python
         script: |
-          #!/usr/bin/env go
+          #!/usr/bin/env bash
           pwd
           
 #         image: ubuntu
