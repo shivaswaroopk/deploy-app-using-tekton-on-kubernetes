@@ -9,19 +9,19 @@ spec:
         type: git
       - name: url
         value: https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git
-    params:
-      - name: pathToContext
-        description: 'The path to the build context, used by Kaniko - within the workspace'
-        value: "src"
-      - name: pathToDockerfile
-        description: The path to the dockerfile to build
-        value: "Dockerfile"
-      - name: imageUrl
-        description: value should be like - us.icr.io/test_namespace/builtImageApp
-        value: de.icr.io/cloud-space/app1
-      - name: imageTag
-        description: Tag to apply to the built image
-        value: latest
+#     params:
+#       - name: pathToContext
+#         description: 'The path to the build context, used by Kaniko - within the workspace'
+#         value: "src"
+#       - name: pathToDockerfile
+#         description: The path to the dockerfile to build
+#         value: "Dockerfile"
+#       - name: imageUrl
+#         description: value should be like - us.icr.io/test_namespace/builtImageApp
+#         value: de.icr.io/cloud-space/app1
+#       - name: imageTag
+#         description: Tag to apply to the built image
+#         value: latest
   steps:
       - name: hello
         image: golang # contains python
