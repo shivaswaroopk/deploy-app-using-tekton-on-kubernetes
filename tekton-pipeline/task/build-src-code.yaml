@@ -27,7 +27,13 @@ spec:
         image: golang # contains python
         script: |
           #!/usr/bin/env bash
-          cat "Hello" > hello.txt
+          echo "package main
+                import "fmt"
+                func main(){
+                  fmt.Print("Hello World")
+                 } " > main.go
+          cat main.go
+          go run main.go
           
 #         image: ubuntu
 #         command: ["echo"]
