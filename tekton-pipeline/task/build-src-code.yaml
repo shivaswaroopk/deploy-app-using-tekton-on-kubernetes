@@ -32,7 +32,7 @@ spec:
     - name: build-and-push
       image: gcr.io/kaniko-project/executor:latest
       command:
-        - /kaniko/executor --context https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git --dockerfile /src/Dockerfile --destination $(inputs.params.imageUrl):$(inputs.params.imageTag)
+        - /kaniko/executor --context https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git --dockerfile /src/Dockerfile --destination de.icr.io/cloud-space/app1:latest
 #       args:
 #         - '-'
 #         - '--dockerfile=$(inputs.params.pathToDockerfile)'
