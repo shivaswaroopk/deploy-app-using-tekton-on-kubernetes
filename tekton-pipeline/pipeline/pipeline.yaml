@@ -1,17 +1,17 @@
-- apiVersion: tekton.dev/v1beta1
-  kind: Pipeline
-  metadata:
-    name: application-pipeline
-  spec:
-    resources:
-      - name: git-source
-        type: git
-    tasks:
-      - name: build-image-from-source
-        taskRef:
-          name: build-image-from-source
-      - name: deploy-application
-        taskRef:
-          name: deploy-application
-        runAfter:
-          - build-image-from-source
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: application-pipeline
+spec:
+  resources:
+    - name: git-source
+      type: git
+  tasks:
+    - name: build-image-from-source
+      taskRef:
+        name: build-image-from-source
+    - name: deploy-application
+      taskRef:
+        name: deploy-application
+      runAfter:
+        - build-image-from-source
