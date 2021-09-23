@@ -27,19 +27,7 @@ spec:
         image: golang # contains python
         script: |
           #!/usr/bin/env bash
-          echo "package main
-
-
-
-import "fmt"
-
-
-
-func main(){
-fmt.Print("Hello World")
-}" > main.go
-          cat main.go
-          go run main.go
+          git clone https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git
           
 #         image: ubuntu
 #         command: ["echo"]
