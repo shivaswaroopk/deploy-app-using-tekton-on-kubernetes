@@ -3,15 +3,14 @@ kind: Task
 metadata:
   name: build-image-from-source
 spec:
-  inputs:
     resources:
       - name: git-source
         type: git
       - name: url
         value: https://github.com/sandeep782/deploy-app-using-tekton-on-kubernetes.git
-#     params:
-#        - name: token
-#          description: git token
+    params:
+       - name: token
+         description: git token
 #       - name: pathToContext
 #         description: 'The path to the build context, used by Kaniko - within the workspace'
 #         value: "src"
@@ -29,11 +28,15 @@ spec:
         image: golang # contains python
         env:
           - name: token
-            value: $(inputs.params.token)
-          
-        script: |
-          #!/usr/bin/env bash
-          git clone https://sandeep782:$token@github.com/sandeep782/deploy-app-using-tekton-on-k8s.git
+            value: $(params.token)
+        command:
+        - git
+        args:
+        - clone
+        - https://sandeep782:$(params.token)@github.com/sandeep782/deploy-app-using-tekton-on-k8s.git
+#         script: |
+#           #!/usr/bin/env bash
+#           git clone https://sandeep782:$token@github.com/sandeep782/deploy-app-using-tekton-on-k8s.git
          
           
 #         image: ubuntu
